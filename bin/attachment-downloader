@@ -79,8 +79,8 @@ def process_message(filename_template, options, message):
             logging.info("Downloading attachment '%s' to path %s", attachment_filename, download_path)
 
             if os.path.isfile(download_path):
-                logging.warning("Overwriting file: '%s'", download_path)
-
+                logging.warning("Filename already found, SKIPPING: '%s'", download_path)
+                continue
             with open(download_path, "wb") as fp:
                 fp.write(attachment.get('content').read())
         except UndefinedError as e:
